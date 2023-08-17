@@ -8,6 +8,11 @@ export declare namespace Types {
         protected addRule(rule: (value: any) => boolean): void;
         protected add(self: any, rule: (value: any) => boolean): any;
         getIdentifier(): string;
+        /**
+         * Tries to validate rules with an unknown Object
+         * @param value Any
+         * @returns
+         */
         match(value: any): boolean;
     }
     export class String extends Type {

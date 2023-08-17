@@ -18,6 +18,11 @@ var Types;
         getIdentifier() {
             return this.identifier;
         }
+        /**
+         * Tries to validate rules with an unknown Object
+         * @param value Any
+         * @returns
+         */
         match(value) {
             // Check if value is valid, if not return
             if (typeof this.isValid(value) === undefined)
