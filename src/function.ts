@@ -1,26 +1,29 @@
 import { Types } from "./params";
 
+// Library //
+
+export type CloudFunction = {
+    params: any,
+    onRequest: (params: any) => void
+}
+
+export namespace Functions {
+    export const Register = (functionObject: CloudFunction) => {
+        const paramsObject = new Types.Obj().matches(functionObject.params)
+        CloudFn.paramsObject = paramsObject
+        CloudFn.onRequest = functionObject.onRequest
+    }
+}
+
 // Inserted V8 Globals //
 
-let CloudFunction = {
+let CloudFn = {
     name: 'GetUser',
     paramsObject: {},
     onRequest: (params: any) => {}
 }
 
-let GetUser = {params: {}, onRequest: (params: any) => {}}
-
-// Library //
-
-
-export namespace Functions {
-    export const Register = (functionObject: {params: any, onRequest: (params: any) => any }) => {
-        const paramsObject = new Types.Obj().matches(functionObject.params)
-        CloudFunction.paramsObject = paramsObject
-        CloudFunction.onRequest = functionObject.onRequest
-    }
-}
-
+let GetUser: CloudFunction = {params: {}, onRequest: (params: any) => {}}
 
 // Function //
 
